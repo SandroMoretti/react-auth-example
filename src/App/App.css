@@ -62,3 +62,10 @@ h3{
   margin-top: 5px;
   margin-bottom: 15px;
 }
+
+
+@media screen and (max-width: 992px) {
+  .form{
+    max-width: 85% !important;
+  }
+}
