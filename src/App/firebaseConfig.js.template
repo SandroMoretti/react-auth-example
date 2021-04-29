@@ -1,0 +1,16 @@
+/* 
+  1 - COPY THE CONTENT OF THIS FILE TO A NEW FILE NAMED firebaseConfig.js in the same folder
+  2 - REPLACE THE FOLLOW LINES WITH YOUR FIREBASE CONFIG
+*/
+const firebaseConfig = {
+  apiKey: "XXXXXXXXX",
+  authDomain: "XXXXXXXXXX",
+  projectId: "XXXXXXXXX",
+  storageBucket: "XXXXXXXXX",
+  messagingSenderId: "XXXXXXXXXX",
+  appId: "XXXXXXXXX",
+  measurementId: "XXXXXXXXX"
+};
+
+// Don't replace the next line.
+export default firebaseConfig;
