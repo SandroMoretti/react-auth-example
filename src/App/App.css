@@ -30,7 +30,7 @@ h3{
   text-align: right;
 }
 
-.form .MuiInputBase-root{
+.form .MuiFormControl-root{
   margin-bottom: 20px;
 }
 
@@ -55,4 +55,9 @@ h3{
 .profilePic{
   border-radius: 50%;
   max-width: 50px;
+}
+
+.MuiAlert-root{
+  margin-top: 5px;
+  margin-bottom: 15px;
 }

@@ -1,6 +1,5 @@
-import { Grid, IconButton, InputAdornment, Link, TextField } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
 import React, { useState, useContext } from 'react';
 import { UserContext } from "../../Providers/UserProvider";
 import { auth } from '../../firebase';
@@ -9,15 +8,9 @@ const UserProfile = () => {
     const user = useContext(UserContext)['user'];
     console.log("user", user);
 
-    const [showPassword, setShowPassword] = useState(false);
-
-    const handleClickShowPassword = () => {
-        setShowPassword(!showPassword);
-    }
-
     return (
         <div className="form">
-            <Grid container xs={12} spacing={2}>
+            <Grid container spacing={2}>
                 {
                     (user.photoURL) ?
                         <Grid item>
