@@ -2,6 +2,7 @@ import { IconButton, InputAdornment, Link, TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import React, { useState } from 'react';
+import { signInWithGoogle } from '../../firebase';
 
 const SignIn = () => {
 
@@ -38,7 +39,7 @@ const SignIn = () => {
             />
 
             <Button variant="contained" color="primary">Sign In</Button>
-            <Button variant="contained" color="secondary">Sign In with Google</Button>
+            <Button variant="contained" color="secondary" onClick={signInWithGoogle}>Sign In with Google</Button>
             <p className="signUp">Don't have an account? <Link to="/test">Sign Up</Link></p>
         </div>
     );

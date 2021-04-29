@@ -6,7 +6,8 @@ export const UserContext = createContext({ user: null });
 
 class UserProvider extends Component {
     state = {
-        user: null
+        user: null,
+        ready: false,
     };
 
 
@@ -14,17 +15,17 @@ class UserProvider extends Component {
     componentDidMount = async () => {
         auth.onAuthStateChanged(async userAuth => {
             const user = (userAuth);
-            this.setState({ user });
+            this.setState({ user: user, ready: true });
         });
 
 
     };
 
     render() {
-        const { user } = this.state;
+        const { user, ready } = this.state;
 
         return (
-            <UserContext.Provider value={user}>
+            <UserContext.Provider value={{ user: user, ready: ready }}>
                 {this.props.children}
             </UserContext.Provider>
         );

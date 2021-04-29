@@ -2,6 +2,11 @@ body{
   background-color: #d8d8d8;
 }
 
+h3{
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
 .App {
   text-align: center;
 }
@@ -31,4 +36,23 @@ body{
 
 .form button {
   margin-top: 10px;
+}
+
+.loading-root{
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  height: 100vh;
+  background-color: #fff;
+  padding-left: 10%;
+}
+.loading-root>div{
+  margin-top: 300px;
+  width: 80%;
+}
+
+.profilePic{
+  border-radius: 50%;
+  max-width: 50px;
 }
