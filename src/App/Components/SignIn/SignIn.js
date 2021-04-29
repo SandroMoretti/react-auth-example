@@ -5,39 +5,30 @@ import React, { useState } from 'react';
 import { auth, googleAuthProvider } from '../../firebase';
 
 const SignIn = () => {
-    const [form, setForm] = useState({ email: '', password: '' });
-    const [showPassword, setShowPassword] = useState(false);
-    const [error, setError] = useState({ email: '', password: '' });
+    const [form, setForm] = useState({ email: '', password: '' });      // state para salvar os valores dos campos do formulário
+    const [showPassword, setShowPassword] = useState(false);            // state para salvar se exibe ou não a senha no campo de password
+    const [error, setError] = useState({ email: '', password: '' });    // state para exibir erros caso tenha
 
     const handleChange = (prop) => (event) => {
-        setForm({ ...form, [prop]: event.target.value });
+        setForm({ ...form, [prop]: event.target.value });       // atualiza os valores do formulário sempre que tiver alteração nos campos
     }
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     }
 
-    const mountErrorDocument = (message) => {
-        return (
-            <div>
-                <b>Failed to Login</b>
-                <br />
-                <p>{message}</p>
-                <p>Check the fields and try again.</p>
-            </div >
-        );
-    }
-
-    const signInWithEmailAndPassword = () => {
+    const signInWithEmailAndPassword = () => {          // faz login com e-mail e senha
         var errorEmail = '';
         var errorPassword = '';
 
+        /* testa se o e-mail está no padrão de e-mail */
         if (!(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(form.email))) {
             errorEmail = 'Insert an valid e-mail.';
         } else {
             errorEmail = '';
         }
 
+        /* testa se a senha tem pelo menos 6 caracteres (mínimo para autenticação do firebae) */
         if (form.password.length < 6) {
             errorPassword = 'The password must contain at least 6 characters.';
         } else {
@@ -50,21 +41,22 @@ const SignIn = () => {
         }
 
         auth.signInWithEmailAndPassword(form.email, form.password).then(() => {
+            /* limpa os erros por garantia. Isso não deve ser necessário pois sempre que entrar aqui a tela atual irá sumir para carregar a tela de perfil */
             setError({ email: '', password: '' });
         }).catch((error) => {
+            /* trata errors vindo da sdk do firebase após uma falha ocorrer na tentativa de login */
             switch (error.code) {
-                case "auth/user-not-found":
+                case "auth/user-not-found": // erro retornado para usuários não cadastrados
                     setError({ email: 'This e-mail is not registered in this site.', password: '' });
                     break;
-                case "auth/wrong-password":
+                case "auth/wrong-password": // erro retornado para senha inválida
                     setError({ email: '', password: 'Inválid password' });
                     break;
             }
-            console.log("error", error);
         });
     }
 
-    const signInWithGoogle = () => {
+    const signInWithGoogle = () => {        // faz email usando a conta google
         auth.signInWithPopup(googleAuthProvider);
     };
 
@@ -92,7 +84,7 @@ const SignIn = () => {
                 helperText={error.password}
                 type={showPassword ? "text" : "password"}
                 InputProps={{
-                    endAdornment:
+                    endAdornment:   // icone para exibir/ocutar senha no final do campo de password
                         < InputAdornment position="end" >
                             <IconButton
                                 aria-label="toggle password visibility"
@@ -106,6 +98,7 @@ const SignIn = () => {
 
             <Button variant="contained" color="primary" onClick={signInWithEmailAndPassword}>Sign In</Button>
             <Button variant="contained" color="secondary" onClick={signInWithGoogle}>Sign In with Google</Button>
+            {/* @todo (tela para sign up não foi feita, apenas deixei a escrita para melhorar o visual da tela) */}
             <p className="signUp">Don't have an account? <Link to="/test">Sign Up</Link></p>
         </div>
     );

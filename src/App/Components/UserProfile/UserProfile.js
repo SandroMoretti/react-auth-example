@@ -12,7 +12,7 @@ const UserProfile = () => {
         <div className="form">
             <Grid container spacing={2}>
                 {
-                    (user.photoURL) ?
+                    (user.photoURL) ?   // testa sem o usuário tem foto para montar um grid caso tenha (só acontecerá se fizer login com a conta google)
                         <Grid item>
                             <div>
                                 <img className="profilePic" src={user.photoURL}></img>
@@ -29,7 +29,7 @@ const UserProfile = () => {
                 </Grid>
             </Grid>
 
-            <Button variant="contained" color="primary" onClick={() => { auth.signOut(); }}>Sign Out</Button>
+            <Button variant="contained" color="primary" onClick={() => { auth.signOut(); /* faz logout */ }}>Sign Out</Button>
         </div>
     );
 }

@@ -8,14 +8,14 @@ import { LinearProgress } from "@material-ui/core";
 function App() {
   const user = useContext(UserContext);
   return (
-    !user.ready ?
+    !user.ready ? // enquanto tiver verificando se o usuário está ou não online carrega um loading ao invés das telas
       <div className="loading-root">
         <LinearProgress />
       </div>
-      : user.user === null ?
+      : user.user === null ?            // caso não tenha usuário autenticado carrega a página Sign In
         <SignIn></SignIn>
         :
-        <UserProfile></UserProfile>
+        <UserProfile></UserProfile>     // caso tenha usuário autenticado carrega a página UserProfile
   );
 }
 
