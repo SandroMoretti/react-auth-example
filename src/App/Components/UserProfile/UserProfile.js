@@ -6,7 +6,6 @@ import { auth } from '../../firebase';
 
 const UserProfile = () => {
     const user = useContext(UserContext)['user'];
-    console.log("user", user);
 
     return (
         <div className="form">
